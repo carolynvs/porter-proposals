@@ -169,3 +169,36 @@ The bundle interface is sh.porter.mixin, it's for communicating with porter, not
     * how to do dynamic outputs? just write to /cnab/app/outputs per usual?
   * actions = install, upgrade, uninstall, invoke
 
+
+---
+
+## Use Cases
+
+> When I install two bundles that use the same version of Porter, and the same mixins, the second installation should go faster.
+
+> I want smaller bundles.
+
+> I want to distribute bundles using someone elses infrastructure, instead of figuring out how to host the binaries myself.
+
+> I want to be able to verify that the mixins in a bundle came from their stated source.
+
+> I want to write mixins that are based on different linux distributions.
+
+> I want to limit which mixins can access bundle credentials. For example, only the az mixin should have access to my Azure credentials, not the exec mixin.
+
+## Proposed Solution
+Distribute mixins via bundles, using them as referenced OCI artifacts in the invocation image. The mixin binary becomes the bundle entry point.
+
+### Pros
+* Reduce size of invocation image.
+* Optimized for layer caching.
+* Reuse infrastructure for distribution and security.
+* Firmer assurances of mixin provenance.
+* Improved performance for build, publish and run.
+* Builds on top of existing mixins.
+* Demonstrates novel application of bundles and that we believe in using them ourselves.
+
+### Cons
+* Requires more development on something that mostly works today.
+* Running mixins in a bundle is more complex.
+* Needs changes to the CNAB Spec to avoid creating "porter-only" bundles.
