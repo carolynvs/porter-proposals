@@ -202,3 +202,8 @@ Distribute mixins via bundles, using them as referenced OCI artifacts in the inv
 * Requires more development on something that mostly works today.
 * Running mixins in a bundle is more complex.
 * Needs changes to the CNAB Spec to avoid creating "porter-only" bundles.
+
+### Resume action
+* remember what was executed, within a bundle and retain enough state to "resume" from the last successful step, or from a named step
+* must be managed by the workflow engine (to know where to start from and retrieve existing outputs)
+* detect if we are running the same action + version + parameters + credentials back to back (hash all inputs, including last revision)

@@ -1,7 +1,7 @@
 # Declarative Bundles
-* The bundle's invocation image is only a filesystem, it doesn't have an entry point.
+* The bundle's invocation image is only a filesystem, it doesn't have an entry point and is never invoked.
 * Declares "components" which are bundles, and they are executed when the bundle is run.
-* They share the same claim.
+* They share the same claim.r
 * They can reference other component's outputs as their parameters and credentials.
 * The bundle manifest contains all of the component bundles.
 
@@ -229,6 +229,7 @@ dependencies: # when dependencies can reference other dependencies should that a
 
 # Spec Changes
 * invocation image is a volume,  not an executed container
+* We can mount multiple volumes (/cnab, /porter)
 * output can be a directory. we can output things that weren't declared
-* envFile parameter type, file parameter type
+* envFile parameter type and file parameter type (allows for larger files)
 * 
